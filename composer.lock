@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "26fff88d7e7702ce13352712d3790765",
+    "content-hash": "1973bb053ab2334449979fea7cd07a7f",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -68,6 +68,50 @@
                 "symmetric key cryptography"
             ],
             "time": "2017-05-18T21:28:48+00:00"
+        },
+        {
+            "name": "digitaldream/laracrud",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/digitaldreams/laracrud.git",
+                "reference": "2e893a0d97958b6932caf72654c42877c91f941d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/digitaldreams/laracrud/zipball/2e893a0d97958b6932caf72654c42877c91f941d",
+                "reference": "2e893a0d97958b6932caf72654c42877c91f941d",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.1.1",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaraCrud\\": "src/lara-crud/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tuhin Bepari",
+                    "email": "digitaldreams40@gmail.com",
+                    "homepage": "http://rpms.ieltsmaster.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CRUD means CREATE, READ, UPDATE AND DELTE are common work in almost every web application. Laravel has also CRUD. We use Model, View, Controller, Request, Route's for CRUD. A well structured database are the blueprint of a web application. So We can create Model, View, Controller, Request from a database table",
+            "homepage": "https://github.com/digitaldreams/laracrud",
+            "keywords": [
+                "crud",
+                "laravel"
+            ],
+            "time": "2017-03-04T13:08:39+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
