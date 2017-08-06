@@ -12,6 +12,7 @@ use App\Http\Requests\Api\Users\ShowRequest;
 use App\Http\Requests\Api\Users\StoreRequest;
 use App\Http\Requests\Api\Users\UpdateRequest;
 use App\Http\Controllers\Controller;
+
 /**
  * Type web service
  *
@@ -78,11 +79,11 @@ class UserController extends ApiController
     "updated_at": "2017-04-25 06:54:25"
     }
     })
-     * @Response(404, body={"message": "No query results for model [App\\User]."})
+     * @Response(404, body={"message": "No query results for model [App\Models\User]."})
      */
-    public function show(ShowRequest $request, User $users)
+    public function show(ShowRequest $request, User $user)
     {
-        return $this->response->item($users, new UserTransformer());
+        return $this->response->item($user, new UserTransformer());
     }
 
     /**
@@ -111,26 +112,18 @@ class UserController extends ApiController
     "zip_code": "",
     "created_at": "2017-04-25 06:54:25",
     "updated_at": "2017-04-25 06:54:25"
-     })
+    })
      */
     public function store(StoreRequest $request)
     {
-        $credentials = [
-            'email' => $request->get('email'),
-            'password' => $request->get('password')
-        ];
-        $user = Sentinel::registerAndActivate($credentials);
-        $user = User::find($user->id);
 
-        $user->phone_number = $request->get('phone');
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
+        $user = new User();
 
-        $user->address = $request->get('address');
-        $user->city = $request->get('city');
-        $user->state = $request->get('state');
-        $user->country = $request->get('country');
-        $user->zip_code = $request->get('zip_code');
+        $user->name = $request->get('last_name');
+        $user->email = $request->get('last_name');
+        $user->password = bcrypt($request->get('password'));
+        //$user->phone_number = $request->get('phone');
+        //$user->address = $request->get('address');
 
         if ($user->save()) {
             $user->roles()->sync($request->get('role_ids', []));
@@ -165,22 +158,16 @@ class UserController extends ApiController
     "zip_code": "",
     "created_at": "2017-04-25 06:54:25",
     "updated_at": "2017-04-25 06:54:25"
-     })
+    })
      * @Response(404, body={"message": "No query results for model [App\\User]."})
      */
     public function update(UpdateRequest $request, User $users)
     {
         $user = $users;
         $user->email = $request->get('email');
-        $user->phone_number = $request->get('phone');
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name', $user->last_name);
-
-        $user->address = $request->get('address', $user->address);
-        $user->city = $request->get('city', $user->city);
-        $user->state = $request->get('state', $user->state);
-        $user->country = $request->get('country', $user->country);
-        $user->zip_code = $request->get('zip_code', $user->zip_code);
+        $user->name = $request->get('name');
+        // $user->address = $request->get('address', $user->address);
+        // $user->phone_number = $request->get('phone');
 
         if ($user->save()) {
             $user->roles()->sync($request->get('role_ids', []));

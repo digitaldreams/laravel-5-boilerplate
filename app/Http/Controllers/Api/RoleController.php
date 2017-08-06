@@ -10,7 +10,7 @@ use App\Http\Requests\Api\Roles\UpdateRequest;
 use App\Transformers\RoleTransformer;
 use Codeception\Util\HttpCode;
 use Illuminate\Http\Request;
-use Cartalyst\Sentinel\Roles\EloquentRole as Role;
+use App\Models\Role;
 
 /**
  * Type web service

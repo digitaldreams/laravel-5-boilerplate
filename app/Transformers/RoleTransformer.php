@@ -2,10 +2,8 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Photo;
-use App\Place as PlaceDB;
-use App\User;
-use Cartalyst\Sentinel\Roles\EloquentRole;
+use App\Models\User;
+use App\Models\Role;
 
 class RoleTransformer extends TransformerAbstract
 {
@@ -21,17 +19,15 @@ class RoleTransformer extends TransformerAbstract
         'users'
     ];
 
-    public function transform(EloquentRole $role)
+    public function transform(Role $role)
     {
         return [
             'id' => $role->id,
             'name' => $role->name,
             'slug' => $role->slug,
-            'permissions' => $role->getPermissions(),
             'created_at' => $role->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $role->updated_at->format('Y-m-d H:i:s'),
         ];
-
     }
 
 

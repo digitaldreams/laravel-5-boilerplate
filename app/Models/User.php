@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return (bool)$this->roles()->where('slug', $role)->count();
     }
+
+    /**
+     * Checking user is System Administrator or not
+     *
+     * @return bool
+     */
+    public function isSuperAdmin()
+    {
+        return $this->hasRole(Role::SLUG_ADMIN);
+    }
 }
